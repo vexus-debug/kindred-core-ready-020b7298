@@ -76,12 +76,20 @@
     --gold-deep: 34 78% 40%;
     --gold-foreground: 0 0% 100%;
 
+    /* ── Sing-inspired dashboard surfaces ── */
+    --app-canvas: 210 28% 96%;
+    --app-canvas-accent: 185 55% 94%;
+    --widget-border: 214 18% 88%;
+    --widget-control: 215 14% 64%;
+    --widget-control-hover: 185 75% 30%;
+
     /* ── Elevation shadows ── */
     --shadow-xs:  0 1px 2px 0 hsl(215 28% 12% / 0.04);
     --shadow-sm:  0 1px 3px 0 hsl(215 28% 12% / 0.07), 0 1px 2px -1px hsl(215 28% 12% / 0.05);
     --shadow-md:  0 4px 8px -1px hsl(215 28% 12% / 0.08), 0 2px 4px -2px hsl(215 28% 12% / 0.05);
     --shadow-lg:  0 10px 20px -3px hsl(215 28% 12% / 0.10), 0 4px 8px -4px hsl(215 28% 12% / 0.05);
     --shadow-xl:  0 20px 32px -5px hsl(215 28% 12% / 0.12), 0 8px 12px -6px hsl(215 28% 12% / 0.05);
+    --widget-shadow: 0 12px 28px -18px hsl(215 28% 12% / 0.28), 0 2px 8px -4px hsl(215 28% 12% / 0.10);
 
     /* ── Sidebar: Dark navy → rich teal gradient ── */
     --sidebar-background: 215 55% 11%;
@@ -127,6 +135,12 @@
     --input: 215 28% 18%;
     --ring: 185 68% 46%;
 
+    --app-canvas: 215 30% 8%;
+    --app-canvas-accent: 215 28% 14%;
+    --widget-border: 215 24% 18%;
+    --widget-control: 215 14% 48%;
+    --widget-control-hover: 185 68% 46%;
+
     --slate: 220 30% 55%;
     --slate-light: 220 35% 68%;
     --slate-pale: 220 25% 18%;
@@ -143,6 +157,7 @@
     --shadow-md:  0 4px 8px -1px hsl(0 0% 0% / 0.30), 0 2px 4px -2px hsl(0 0% 0% / 0.18);
     --shadow-lg:  0 10px 20px -3px hsl(0 0% 0% / 0.36), 0 4px 8px -4px hsl(0 0% 0% / 0.18);
     --shadow-xl:  0 20px 32px -5px hsl(0 0% 0% / 0.42), 0 8px 12px -6px hsl(0 0% 0% / 0.18);
+    --widget-shadow: 0 14px 30px -18px hsl(0 0% 0% / 0.64), 0 2px 8px -4px hsl(0 0% 0% / 0.35);
 
     --sidebar-background: 215 52% 8%;
     --sidebar-foreground: 210 28% 90%;
@@ -201,6 +216,50 @@
      during animation on its own. */
   .gpu-accelerated { transform: none; }
 
+  .sing-widget {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid hsl(var(--widget-border));
+    background: hsl(var(--card));
+    box-shadow: var(--widget-shadow);
+  }
+
+  .sing-widget::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.32), transparent);
+    pointer-events: none;
+  }
+
+  .sing-widget::after {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 1.25rem;
+    height: 0.25rem;
+    opacity: 0.55;
+    background-image: radial-gradient(circle, hsl(var(--widget-control)) 1.5px, transparent 1.75px);
+    background-size: 0.42rem 0.25rem;
+    background-repeat: repeat-x;
+    pointer-events: none;
+  }
+
+  .sing-widget:has([role='table'])::after,
+  .sing-widget:has(table)::after {
+    opacity: 0.35;
+  }
+
+  .widget-controls-dots {
+    color: hsl(var(--widget-control));
+  }
+
+  .widget-controls-dots:hover {
+    color: hsl(var(--widget-control-hover));
+  }
+
 }
 
 /* ─── Premium Stat Card ─────────────────────────────────── */
@@ -235,16 +294,15 @@
 
 /* ─── Dashboard background ──────────────────────────────── */
 .dashboard-bg {
-  background-color: hsl(var(--background));
-  /* Plain background: the previous radial-gradient dot pattern caused
-     composited-tile corruption / horizontal line artifacts on mobile Chrome. */
+  background:
+    linear-gradient(180deg, hsl(var(--app-canvas)) 0%, hsl(var(--background)) 46%, hsl(var(--app-canvas)) 100%);
 }
 
 /* ─── Glass card ────────────────────────────────────────── */
 .glass-card {
   background: hsl(var(--card));
-  border: 1px solid hsl(var(--border));
-  box-shadow: var(--shadow-sm);
+  border: 1px solid hsl(var(--widget-border));
+  box-shadow: var(--widget-shadow);
 }
 
 /* ─── Sidebar gradient ──────────────────────────────────── */

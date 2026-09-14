@@ -68,6 +68,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                         animate="animate"
                         exit="exit"
                         transition={{ duration: 0.2 }}
+                        className="mx-auto w-full max-w-[1540px]"
                       >
                         {children}
                       </motion.div>
@@ -148,7 +149,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                     animate="animate"
                     exit="exit"
                     transition={springTransition}
-                    className="gpu-accelerated"
+                    className="gpu-accelerated mx-auto w-full max-w-[1540px]"
                   >
                     {children}
                   </motion.div>

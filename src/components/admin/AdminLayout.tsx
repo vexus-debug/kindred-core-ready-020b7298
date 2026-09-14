@@ -42,7 +42,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 animate="animate"
                 exit="exit"
                 transition={springTransition}
-                className="gpu-accelerated"
+                className="gpu-accelerated mx-auto w-full max-w-[1540px]"
               >
                 {children}
               </motion.div>
