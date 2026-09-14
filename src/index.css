@@ -233,6 +233,25 @@
     pointer-events: none;
   }
 
+  .sing-widget::after {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 1.25rem;
+    height: 0.25rem;
+    opacity: 0.55;
+    background-image: radial-gradient(circle, hsl(var(--widget-control)) 1.5px, transparent 1.75px);
+    background-size: 0.42rem 0.25rem;
+    background-repeat: repeat-x;
+    pointer-events: none;
+  }
+
+  .sing-widget:has([role='table'])::after,
+  .sing-widget:has(table)::after {
+    opacity: 0.35;
+  }
+
   .widget-controls-dots {
     color: hsl(var(--widget-control));
   }
